@@ -1,16 +1,15 @@
 import logging, ephem, datetime, requests, re
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
-from setting import API_KEY, MARSS, MERCURY, URANUS, JUPITER, VENUS, NEPTUNE, SATURN, system, NOT_Plan
+from setting import API_KEY, MARS, MERCURY, URANUS, JUPITER, VENUS, NEPTUNE, SATURN, system_img, NOT_Plan
 
 now = datetime.datetime.now()
 logging.basicConfig(filename='bot.log', level=logging.INFO)
-
 
 def greet_user(update, context):
     print('Вызван /start')
     print(update.message.text.split())
     update.message.reply_text('Привет! На какую планету отправимся?)')
-    update.message.reply_photo(photo=system)
+    update.message.reply_photo(photo=system_img)
     update.message.reply_text('Чтобы отправится к нужной планете просто используй конду /planet [planet] например  '
                               '/planet Venus')
 
@@ -25,7 +24,7 @@ def planet(update, context):
     get_planet = update.message.text.split()
     print(get_planet)
     if get_planet[1] == "Mars":
-        update.message.perly_photo(MARSS)
+        update.message.perly_photo(MARS)
         mars = ephem.Mars(now)
         planet_now = ephem.constellation(mars)
         update.message.reply_text(f'Сегодня планета "{get_planet[1]}" находится в созвездии: {planet_now[1]}')
