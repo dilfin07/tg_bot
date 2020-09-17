@@ -1,6 +1,7 @@
 import logging, ephem, datetime
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
-from setting import API_KEY, planet_img, NOT_Plan
+from setting_local import API_KEY
+from imag import  planet_img, NOT_Plan
 
 now = datetime.datetime.now()
 logging.basicConfig(filename='bot.log', level=logging.INFO)
